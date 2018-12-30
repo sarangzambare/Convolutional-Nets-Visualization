@@ -1,4 +1,4 @@
-# Visualizing what convnets learn with simple dataset
+# Visualizing what convnets learn with a simple dataset
 ## Author: Sarang Zambare
 
 
