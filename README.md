@@ -17,6 +17,17 @@ I tried using feature extraction using the vgg16 network, with a final dropout o
 ![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/trainval_loss.png)
 
 
+To visualize how convolutional networks "see" things, I used the original pre-trained vgg16 network,
+and produced heatmaps of the class which an example photo maximally activated to. Below is the example image and the heatmap:
+
+### Example Image:
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/example_dog.png)
+
+
+
+
+
 
 
 
