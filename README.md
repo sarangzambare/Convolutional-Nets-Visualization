@@ -25,6 +25,12 @@ and produced heatmaps of the class which an example photo maximally activated to
 ![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/example_dog.png)
 
 
+This image was classified as "Labrador Retriever" with 69.9% accuracy. Below is the heatmap of the example image over the class "Labrador Retriever" 
+
+### Heatmap over Labrador Retriever class:
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/heatmap.png)
+
 
 
 
