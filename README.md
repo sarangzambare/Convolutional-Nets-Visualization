@@ -12,9 +12,50 @@ backgrounds.
 I used Keras for most of the learning and parameter tuning for this project. Using a basic alternation of
 8 maxpool and convolutional layers, I was able to achieve an 78% validation accuracy.
 
-I tried using feature extraction using the vgg16 network, with a final dropout of 50% (before flattening), and I was able to up the validation accuracy to about 85%
-
 ![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/png/trainval_loss.png)
+
+After that, I tried using feature extraction using the vgg16 network, with a final dropout of 50% (before flattening). I also used data-augmentation (stretching mostly) using the inbuit functionalities in keras, and as a result I was able to get a validation accuracy of 85%
+
+```
+train_datagen = ImageDataGenerator(rescale=1./255,
+                                  rotation_range=40,
+                                  width_shift_range=0.2,
+                                  height_shift_range=0.2,
+                                  shear_range=0.2,
+                                  zoom_range=0.2,
+                                  horizontal_flip=True,
+                                  fill_mode='nearest')
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+train_generator = train_datagen.flow_from_directory(train_dir,target_size=(150,150),batch_size=32,class_mode='binary')
+history = model.fit_generator(
+      train_generator,
+      steps_per_epoch=100,
+      epochs=100,
+      validation_data=validation_generator,
+      validation_steps=50)
+
+model.save('cats_and_dogs_small_2.h5')
+
+import matplotlib.pyplot as plt
+acc = history.history['acc']
+val_acc = history.history['val_acc']
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+epochs = range(1, len(acc) + 1)
+plt.plot(epochs, acc, 'bo', label='Training acc')
+plt.plot(epochs, val_acc, 'b', label='Validation acc')
+plt.title('Training and validation accuracy')
+plt.legend()
+plt.figure()
+plt.plot(epochs, loss, 'bo', label='Training loss')
+plt.plot(epochs, val_loss, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.legend()
+plt.show()
+```
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/cats_vs_dogs/master/png/augmented.png)
 
 
 To visualize how convolutional networks "see" things, I used the original pre-trained vgg16 network,
